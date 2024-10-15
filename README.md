@@ -97,7 +97,3 @@ Contributions are welcome! Feel free to submit issues or pull requests. Any sugg
 ## **License**
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
----
-
-This version uses **bold** titles and a clear hierarchy to make it more attractive and readable. Adding a demo GIF or image will enhance it even further. Let me know if you’d like to add more adjustments!
