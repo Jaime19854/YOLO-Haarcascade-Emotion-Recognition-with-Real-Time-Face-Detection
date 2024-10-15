@@ -1,4 +1,4 @@
-YOLO-Haarcascade Emotion Recognition with Real-Time Face Detection
+#YOLO-Haarcascade Emotion Recognition with Real-Time Face Detection
 This project implements a real-time emotion recognition system that utilizes both a custom-trained YOLOv8 model and Haarcascade face detection models. Detected faces are processed through a custom-trained Convolutional Neural Network (CNN) model to predict emotions. This project compares the performance of both YOLOv8 and Haarcascade face detection methods and overlays the predicted emotions on a live video feed.
 
 Features
