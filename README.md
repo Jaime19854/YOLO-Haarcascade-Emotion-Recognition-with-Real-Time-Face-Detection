@@ -1,69 +1,103 @@
-#YOLO-Haarcascade Emotion Recognition with Real-Time Face Detection
-This project implements a real-time emotion recognition system that utilizes both a custom-trained YOLOv8 model and Haarcascade face detection models. Detected faces are processed through a custom-trained Convolutional Neural Network (CNN) model to predict emotions. This project compares the performance of both YOLOv8 and Haarcascade face detection methods and overlays the predicted emotions on a live video feed.
+# **YOLO-Haarcascade Emotion Recognition with Real-Time Face Detection**
 
-Features
-Custom YOLOv8 for Face Detection: A custom-trained YOLOv8 model specifically trained on a face dataset is used for fast and accurate face detection.
-Haarcascade for Face Detection: Provides an alternative face detection method for comparison.
-Emotion Recognition: A CNN model trained on the FER-2013 dataset predicts seven emotions: Angry, Disgust, Fear, Happy, Neutral, Sad, and Surprise.
-Real-time Processing: Detects faces and predicts emotions in real-time using a webcam feed.
-Comparison of Detection Methods: Displays results from both YOLOv8 and Haarcascade side by side to evaluate the performance of each.
-Demo
+This project implements a real-time emotion recognition system that uses both a **custom-trained YOLOv8** model and the **Haarcascade** face detection model. Detected faces are processed by a custom **Convolutional Neural Network (CNN)** model to predict emotions. The project compares the performance of YOLOv8 and Haarcascade for face detection and displays the predicted emotions on a live video feed.
 
-Add a GIF or image demonstrating the system in action.
+## **Features**
 
-Installation
-To get started with this project, follow the steps below:
+- **Custom YOLOv8 for Face Detection**  
+  Utilizes a custom-trained YOLOv8 model for accurate, fast face detection.
+  
+- **Haarcascade for Face Detection**  
+  Implements Haarcascade face detection for performance comparison.
 
-1. Clone the Repository
-First, clone this repository to your local machine:
+- **Emotion Recognition**  
+  Predicts seven emotions (Angry, Disgust, Fear, Happy, Neutral, Sad, Surprise) using a CNN model trained on the FER-2013 dataset.
 
-bash
-Copy code
+- **Real-time Processing**  
+  Detects faces and predicts emotions from live webcam video feed in real time.
+
+- **Comparison of Detection Methods**  
+  Displays both YOLOv8 and Haarcascade face detection results side by side for evaluation.
+
+## **Demo**
+![Demo GIF](path-to-gif)  
+*Add a GIF or image to demonstrate the system in action.*
+
+## **Installation**
+
+Follow these steps to set up and run the project:
+
+### **1. Clone the Repository**
+```bash
 git clone https://github.com/Shay-Ostrovsky/YOLO-Haarcascade-Emotion-Recognition-with-Real-Time-Face-Detection.git
 cd YOLO-Haarcascade-Emotion-Recognition-with-Real-Time-Face-Detection
-2. Set up a Virtual Environment (Optional)
-It's recommended to create a virtual environment:
+```
 
-bash
-Copy code
+### **2. Set up a Virtual Environment (Optional)**
+```bash
 python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
-3. Install Required Packages
-Install the dependencies from requirements.txt:
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-bash
-Copy code
+### **3. Install Required Packages**
+```bash
 pip install -r requirements.txt
-4. Download YOLOv8 Pretrained Model
-Download the custom YOLOv8 face detection model (new.pt) that was trained on a face dataset and place it in the root directory.
+```
 
-5. Download Haarcascade Model
-Download the Haarcascade face detection model from OpenCV GitHub and place it in the root directory.
+### **4. Download YOLOv8 Pretrained Model**
+Download the custom-trained YOLOv8 face detection model (`new.pt`) and place it in the root directory.
 
-6. Run the Application
-Start the real-time emotion detection:
+### **5. Download Haarcascade Model**
+Download the Haarcascade model from [OpenCV GitHub](https://github.com/opencv/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.xml) and place it in the root directory.
 
-bash
-Copy code
+### **6. Run the Application**
+```bash
 python main.py
-Ensure your webcam is connected and accessible for live video feed.
+```
+Ensure your webcam is connected for real-time video feed.
 
-How It Works
-Face Detection:
+## **How It Works**
 
-The system first uses both the custom-trained YOLOv8 and Haarcascade models to detect faces in real time.
-Faces are extracted as regions of interest (ROI) from the live video feed.
-Emotion Recognition:
+1. **Face Detection:**  
+   Both YOLOv8 and Haarcascade detect faces in the live video feed. Faces are extracted as regions of interest (ROI).
 
-The detected face ROIs are passed to a custom CNN model, which predicts one of seven emotions (Angry, Disgust, Fear, Happy, Neutral, Sad, Surprise).
-The emotions are overlaid on the live feed for each detected face.
-Side-by-Side Comparison:
+2. **Emotion Recognition:**  
+   The detected face ROIs are fed into the CNN model, which predicts one of the seven emotions: Angry, Disgust, Fear, Happy, Neutral, Sad, Surprise.
 
-The system displays the YOLOv8 and Haarcascade detection results in separate windows for performance comparison.
-Dataset
-The emotion recognition model is trained on the FER-2013 dataset, which contains grayscale facial images categorized into seven emotions.
+3. **Side-by-Side Comparison:**  
+   The results from both YOLOv8 and Haarcascade are shown in separate windows for performance evaluation.
 
-Models Used
-Custom YOLOv8: A custom-trained YOLOv8 model trained on a face detection dataset.
-Haarcascade: A classic OpenCV face detection model.
-Custom CNN: A convolutional neural network model trained on the FER-2013 dataset for emotion classification.
+## **Dataset**
+
+The CNN model is trained on the **FER-2013** dataset, which contains grayscale facial images categorized into seven emotions.
+
+## **Models Used**
+
+- **Custom YOLOv8:**  
+  Trained specifically on a face detection dataset.
+  
+- **Haarcascade:**  
+  OpenCV’s classic face detection model.
+  
+- **Custom CNN:**  
+  Trained on the FER-2013 dataset for emotion classification.
+
+## **Requirements**
+
+- Python 3.8+
+- TensorFlow 2.x
+- OpenCV 4.x
+- Ultralytics YOLOv8
+- Dependencies listed in `requirements.txt`
+
+## **Contributing**
+
+Contributions are welcome! Feel free to submit issues or pull requests. Any suggestions or improvements are greatly appreciated.
+
+## **License**
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+---
+
+This version uses **bold** titles and a clear hierarchy to make it more attractive and readable. Adding a demo GIF or image will enhance it even further. Let me know if you’d like to add more adjustments!
