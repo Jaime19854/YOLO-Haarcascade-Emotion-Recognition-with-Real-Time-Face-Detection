@@ -20,7 +20,7 @@ This project implements a real-time emotion recognition system that uses both a 
   Displays both YOLOv8 and Haarcascade face detection results side by side for evaluation.
 
 ## **Demo**
-![Demo GIF](path-to-gif)  
+![Demo GIF](demo1.jpg)  
 *Add a GIF or image to demonstrate the system in action.*
 
 ## **Installation**
