@@ -80,20 +80,15 @@ The CNN model is trained on the **FER-2013** dataset, which contains grayscale f
   OpenCV’s classic face detection model.
   
 - **Custom CNN:**  
-  Trained on the FER-2013 dataset for emotion classification.
+[  Trained on the FER-2013 dataset for emotion classification.
+](https://www.kaggle.com/datasets/msambare/fer2013)
 
+[Face data set for detection.
+](http://shuoyang1213.me/WIDERFACE/)  
 ## **Requirements**
 
-- Python 3.8+
-- TensorFlow 2.x
-- OpenCV 4.x
-- Ultralytics YOLOv8
+- Python
+- TensorFlow
+- OpenCV
+- Ultralytics
 - Dependencies listed in `requirements.txt`
-
-## **Contributing**
-
-Contributions are welcome! Feel free to submit issues or pull requests. Any suggestions or improvements are greatly appreciated.
-
-## **License**
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
