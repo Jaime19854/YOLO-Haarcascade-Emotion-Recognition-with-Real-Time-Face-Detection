@@ -44,8 +44,8 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### **4. Download YOLOv8 Pretrained Model**
-Download the custom-trained YOLOv8 face detection model (`new.pt`) and place it in the root directory.
+### **4. Download Pretrained Models**
+[Download](https://drive.google.com/drive/folders/1TYgJT-jtCmoGbLvgridp8sIsSoPigjbp?usp=sharing)
 
 ### **5. Download Haarcascade Model**
 Download the Haarcascade model from [OpenCV GitHub](https://github.com/opencv/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.xml) and place it in the root directory.
