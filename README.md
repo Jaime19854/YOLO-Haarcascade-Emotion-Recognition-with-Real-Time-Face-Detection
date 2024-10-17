@@ -74,8 +74,8 @@ The CNN model is trained on the **FER-2013** dataset, which contains grayscale f
 ## **Models Used**
 
 - **Custom YOLOv8:**  
-  Trained specifically on a face detection dataset.
-  
+[  Trained specifically on a face detection dataset.
+](http://shuoyang1213.me/WIDERFACE/)  
 - **Haarcascade:**  
   OpenCV’s classic face detection model.
   
@@ -83,8 +83,6 @@ The CNN model is trained on the **FER-2013** dataset, which contains grayscale f
 [  Trained on the FER-2013 dataset for emotion classification.
 ](https://www.kaggle.com/datasets/msambare/fer2013)
 
-[Face data set for detection.
-](http://shuoyang1213.me/WIDERFACE/)  
 ## **Requirements**
 
 - Python
