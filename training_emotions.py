@@ -1,29 +1,20 @@
+import os
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import ModelCheckpoint, ReduceLROnPlateau, EarlyStopping
 from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D, BatchNormalization, Activation, MaxPooling2D
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import Adam
-# Check if a GPU is available
-gpus = tf.config.list_physical_devices('GPU')
-if gpus:
-    # Select the first GPU device (you can adjust this as needed)
-    try:
-        tf.config.set_visible_devices(gpus[0], 'GPU')
-        logical_gpus = tf.config.list_logical_devices('GPU')
-        print(len(logical_gpus), "Logical GPUs are available.")
-    except RuntimeError as e:
-        # Error handling if GPU cannot be configured
-        print(e)
 
 # Define the path to your dataset
-train_dir = 'C:/Users/shay/Desktop/fh/emotions/train'
-val_dir = 'C:/Users/shay/Desktop/fh/emotions/test'
+base_dir = os.path.join(os.getcwd(), 'emotions')
+train_dir = os.path.join(base_dir, 'train')
+val_dir = os.path.join(base_dir, 'test')
 
 # Data augmentation
 train_datagen = ImageDataGenerator(
     rescale=1./255,
-    rotation_range=15,  # Increased for better augmentation
+    rotation_range=15,  
     width_shift_range=0.15,
     height_shift_range=0.15,
     shear_range=0.15,
@@ -37,7 +28,7 @@ val_datagen = ImageDataGenerator(rescale=1./255)
 train_generator = train_datagen.flow_from_directory(
     train_dir,
     target_size=(48, 48),
-    batch_size=32,  # Increased batch size for faster training
+    batch_size=32, 
     class_mode='categorical',
     color_mode='grayscale',
     shuffle=True
@@ -71,7 +62,7 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.3))
 
 # 3rd CNN layer
-model.add(Conv2D(256, (3, 3), padding='same'))  # Reduced filters to reduce complexity
+model.add(Conv2D(256, (3, 3), padding='same'))  
 model.add(BatchNormalization())
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -98,7 +89,7 @@ model.add(Flatten())
 model.add(Dense(256))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
-model.add(Dropout(0.4))  # Increased dropout for regularization
+model.add(Dropout(0.4)) 
 
 # Fully connected 2nd layer
 model.add(Dense(512))
@@ -125,15 +116,13 @@ reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=5, verbos
 
 # Compile the model with an adaptive learning rate optimizer
 model.compile(loss='categorical_crossentropy',
-              optimizer=Adam(learning_rate=0.001),  # Can adjust learning rate here
+              optimizer=Adam(learning_rate=0.001),  
               metrics=['accuracy'])
 
 # Train the model with all the callbacks
-# Print the class indices to verify the order of labels
-print("Class indices (label mapping):", train_generator.class_indices)
 
 history = model.fit(train_generator,
                     validation_data=validation_generator,
-                    epochs=100,  # Fewer epochs due to early stopping
+                    epochs=100,  
                     callbacks=[checkpoint, early_stopping, reduce_lr],
                     verbose=1)
