@@ -69,8 +69,8 @@ Ensure your webcam is connected for real-time video feed.
 
 ## **Dataset**
 
-The CNN model is trained on the **FER-2013** dataset, which contains grayscale facial images categorized into seven emotions.
-
+The CNN model is trained on the **FER-2013** dataset, which contains grayscale facial images categorized into seven emotions. 
+WIDER FACE dataset for face detection
 ## **Models Used**
 
 - **Custom YOLOv8:**  
