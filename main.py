@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
-from ultralytics import YOLO  # Assuming YOLOv8 is from the Ultralytics package
+from ultralytics import YOLO  
 
 class YOLOEmotionFaceDetector:
     def __init__(self, yolo_model_path, emotion_model_path):
@@ -11,7 +11,7 @@ class YOLOEmotionFaceDetector:
         # Load the emotion detection model
         self.emotion_model = load_model(emotion_model_path)
         
-        # Define emotion labels (based on the class indices you provided)
+        # Define emotion labels
         self.emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']
 
     def detect_faces_yolo(self, frame):
@@ -86,12 +86,11 @@ class YOLOEmotionFaceDetector:
         return yolo_frame, haar_frame
 
 
-# Example usage
 if __name__ == "__main__":
     # Paths to the YOLO face detection model and emotion detection model
-    yolo_model_path = 'new.pt'  # Replace with your trained YOLO model path
+    yolo_model_path = 'yolo_face_detection.pt'
     haarcascade_path = 'haarcascade_frontalface_default.xml'
-    emotion_model_path = 'try./best_model.h5'
+    emotion_model_path = 'emotion_regulation_model.h5'
 
     # Load the Haarcascade model
     haarcascade = cv2.CascadeClassifier(haarcascade_path)
@@ -100,7 +99,7 @@ if __name__ == "__main__":
     detector = YOLOEmotionFaceDetector(yolo_model_path, emotion_model_path)
 
     # Initialize webcam video capture
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
 
     while True:
         # Capture frame-by-frame
