@@ -5,7 +5,7 @@ This project implements a real-time emotion recognition system that uses both a 
 ## **Features**
 
 - **Custom YOLOv8 for Face Detection**  
-  Utilizes a custom-trained YOLOv8 model for accurate, fast face detection.
+  Utilizes a YOLOv8 model that I trained myself for accurate and fast face detection.
   
 - **Haarcascade for Face Detection**  
   Implements Haarcascade face detection for performance comparison.
@@ -69,12 +69,12 @@ Ensure your webcam is connected for real-time video feed.
 
 ## **Dataset**
 
-The CNN model is trained on the **FER-2013** dataset, which contains grayscale facial images categorized into seven emotions.
-
+The CNN model is trained on the **FER-2013** dataset, which contains grayscale facial images categorized into seven emotions. 
+The YOLO model is trained on the WIDER FACE dataset for face detection.
 ## **Models Used**
 
 - **Custom YOLOv8:**  
-[  Trained specifically on a face detection dataset.
+[  Trained by me specifically on the WIDER FACE dataset for face detection
 ](http://shuoyang1213.me/WIDERFACE/)  
 - **Haarcascade:**  
   OpenCV’s classic face detection model.

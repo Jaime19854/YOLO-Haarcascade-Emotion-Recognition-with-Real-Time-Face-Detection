@@ -1,8 +1,12 @@
 import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
+<<<<<<< HEAD
 from ultralytics import YOLO  # Assuming YOLOv8 is from the Ultralytics package
 import os
+=======
+from ultralytics import YOLO  
+>>>>>>> b8ddc3363c1ad84830bde69a0443bf5d4a85b2af
 
 class YOLOEmotionFaceDetector:
     def __init__(self, yolo_model_path, emotion_model_path):
@@ -12,7 +16,7 @@ class YOLOEmotionFaceDetector:
         # Load the emotion detection model
         self.emotion_model = load_model(emotion_model_path)
         
-        # Define emotion labels (based on the class indices you provided)
+        # Define emotion labels
         self.emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']
 
     def detect_faces_yolo(self, frame):
@@ -59,12 +63,21 @@ class YOLOEmotionFaceDetector:
         
         return yolo_frame, haar_frame
 
+<<<<<<< HEAD
 # Example usage
 if __name__ == "__main__":
     # Paths to the YOLO face detection model and emotion detection model
     yolo_model_path = 'C:\\Git\\Video\\Emotion_Recognition_wReal_Time_Face_Detection\\RealTimeFaceEmotionDetection\\YOLO-Haarcascade-Emotion-Recognition-with-Real-Time-Face-Detection\\yolo_face_detection.pt'  # Replace with your trained YOLO model path
     haarcascade_path = 'haarcascade_frontalface_default.xml'
     emotion_model_path = 'C:\\Git\\Video\\Emotion_Recognition_wReal_Time_Face_Detection\\RealTimeFaceEmotionDetection\\YOLO-Haarcascade-Emotion-Recognition-with-Real-Time-Face-Detection\\emotion_regulation_model.h5'
+=======
+
+if __name__ == "__main__":
+    # Paths to the YOLO face detection model and emotion detection model
+    yolo_model_path = 'yolo_face_detection.pt'
+    haarcascade_path = 'haarcascade_frontalface_default.xml'
+    emotion_model_path = 'emotion_regulation_model.h5'
+>>>>>>> b8ddc3363c1ad84830bde69a0443bf5d4a85b2af
 
     # Load the Haarcascade model
     haarcascade = cv2.CascadeClassifier(haarcascade_path)
@@ -74,10 +87,13 @@ if __name__ == "__main__":
 
     # Initialize webcam video capture
     cap = cv2.VideoCapture(0)
+<<<<<<< HEAD
 
     # Variables for fall detection
     previous_y = None
     fall_threshold = 50  # Adjust this threshold based on your requirements
+=======
+>>>>>>> b8ddc3363c1ad84830bde69a0443bf5d4a85b2af
 
     while True:
         # Capture frame-by-frame
