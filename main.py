@@ -1,3 +1,6 @@
+import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
 import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
@@ -33,37 +36,28 @@ class YOLOEmotionFaceDetector:
         return faces
 
     def predict_emotion(self, face_region):
-        # Resize face region to match the emotion model input size (48x48)
+        # Resize the face region to the input size of the emotion model
         resized_face = cv2.resize(face_region, (48, 48))
+        resized_face = resized_face.astype('float32') / 255.0
+        resized_face = np.expand_dims(resized_face, axis=0)
+        resized_face = np.expand_dims(resized_face, axis=-1)
         
-        # Normalize the face region (convert to float32 and scale between 0 and 1)
-        normalized_face = resized_face.astype('float32') / 255.0
+        # Predict the emotion
+        predictions = self.emotion_model.predict(resized_face)
+        emotion_index = np.argmax(predictions)
+        confidence = predictions[0][emotion_index]
+        emotion = self.emotion_labels[emotion_index]
         
-        # Expand dimensions to match the input shape of the emotion model (1, 48, 48, 1)
-        input_face = np.expand_dims(normalized_face, axis=0)
-        input_face = np.expand_dims(input_face, axis=-1)  # For grayscale images
-        
-        # Predict the emotion using the emotion model
-        emotion_prediction = self.emotion_model.predict(input_face)
-        
-        # Get the index of the highest probability
-        emotion_label_idx = np.argmax(emotion_prediction)
-        
-        # Get the corresponding emotion label
-        emotion_label = self.emotion_labels[emotion_label_idx]
-        
-        # Also return the confidence of the predicted emotion
-        confidence = np.max(emotion_prediction)
-        
-        return emotion_label, confidence
+        return emotion, confidence
 
     def process_frame(self, frame, cascade_classifier):
-        # Create a copy of the frame to show both results side by side
         yolo_frame = frame.copy()
         haar_frame = frame.copy()
-        
+
         # Detect faces using YOLO
         yolo_faces = self.detect_faces_yolo(yolo_frame)
+
+        # Detect faces using Haarcascade
         haar_faces = self.detect_faces_haarcascade(haar_frame, cascade_classifier)
 
         # Convert the frame to grayscale for emotion detection
@@ -86,7 +80,7 @@ class YOLOEmotionFaceDetector:
         return yolo_frame, haar_frame
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     # Paths to the YOLO face detection model and emotion detection model
     yolo_model_path = 'yolo_face_detection.pt'
     haarcascade_path = 'haarcascade_frontalface_default.xml'
@@ -98,8 +92,13 @@ if __name__ == "__main__":
     # Create an instance of YOLOEmotionFaceDetector
     detector = YOLOEmotionFaceDetector(yolo_model_path, emotion_model_path)
 
-    # Initialize webcam video capture
-    cap = cv2.VideoCapture(0)
+    # Initialize RTSP video capture
+    rtsp_url = 'rtsp://admin:173786@192.168.126.115:554/live/profile.0'
+    cap = cv2.VideoCapture(rtsp_url)
+
+    if not cap.isOpened():
+        print("Error: Could not open RTSP stream")
+        exit()
 
     while True:
         # Capture frame-by-frame
@@ -107,6 +106,9 @@ if __name__ == "__main__":
 
         if not ret:
             break
+
+        # Resize the frame to a lower resolution for faster processing
+        frame = cv2.resize(frame, (320, 240))  # Adjust the resolution as needed
 
         # Process the frame for face and emotion detection using YOLO and Haarcascade
         yolo_frame, haar_frame = detector.process_frame(frame, haarcascade)
